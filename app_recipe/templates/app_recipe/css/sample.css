@@ -1,0 +1,67 @@
+/*Reset*/
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+/*Main style*/
+body{
+	font-family: 'Segoe UI',Tohoma,Geneva,verdena ;
+	line-height: 1.7em;
+}
+/*Navbar*/
+#navbar{
+	background: #e6efea;
+	color: #bf531b;
+	overflow:auto;
+}
+#navbar a{
+	color:  #bf531b;
+}
+#navbar h1{
+	float: left;
+	font-size: 40px;
+	padding-left: 5px;
+	font-weight: bolder;
+	padding-top:20px;
+
+}
+#navbar ul{
+	list-style: none;
+	float: right;
+}
+#navbar ul li{
+	float:left;
+	padding: 5px;
+}
+#navbar ul li a{
+	display: block;
+	text-align: center;
+}
+.container{
+	margin: auto;
+	max-width: 1100px;
+}
+#logo{
+
+		width:40x;
+		height: 30px;
+		padding-top: 10px;
+		float: left;
+	}
+.search{
+	width: 80px;
+	height: 20px;
+	float: right;
+	padding-top: 30px;
+	padding-left: 20px;
+	color: #fff;
+	position: right;
+		}
+.searchbox{
+		width: 40px;
+		height: 20px;
+		display: inline-block;
+		margin-left: 80px;
+		}
+
