@@ -63,11 +63,3 @@ class CustomUser(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.staff
-
-class Customer(models.Model):
-    user        = models.OneToOneField(to = CustomUser, on_delete = models.CASCADE, blank = True, null=True)
-    full_name   = models.CharField(max_length= 20)
-    address     = models.CharField(max_length = 255)
-    def __str__(self):
-        return self.full_name
-# shows a error in vscode No value for argument 'to' in constructor call ->>> Not a error
