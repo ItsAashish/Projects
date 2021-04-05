@@ -1,0 +1,18 @@
+{% extends 'app_recipe/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form class = 'box' action="" method="post">
+    {% csrf_token %}
+    {{ RForm|crispy }}<br><br>
+    {{ formset.management_form }}
+    <div> <h2>Enter the Ingredients </h2></div>
+    <br>
+    {% for form in formset %}
+        {{ form.as_p }}
+    {% endfor %}
+    <input type="submit" value="save">
+    
+
+</form>
+{% endblock %}

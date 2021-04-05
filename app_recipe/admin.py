@@ -6,6 +6,7 @@ from .models import (
     Comment,
     Report,
     Recipe_Ingredient,
+    Ingredient
 )
 
 
@@ -15,4 +16,5 @@ admin.site.register(Category)
 admin.site.register(Recipe)
 admin.site.register(Comment)
 admin.site.register(Report)
+admin.site.register(Ingredient)
 admin.site.register(Recipe_Ingredient)

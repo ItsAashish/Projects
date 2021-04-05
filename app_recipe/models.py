@@ -35,8 +35,12 @@ class Recipe(models.Model):
     date_added      = models.DateTimeField(auto_now_add= True, blank= False)
     recipe_type     = models.ForeignKey('Category',
                             blank= True, null= True,
-                            on_delete = models.CASCADE)
-
+                            on_delete = models.CASCADE
+                            )
+    created_by      = models.ForeignKey(
+                    CustomUser,
+                    on_delete=models.CASCADE
+        )
     def __str__(self):
         return f'{ self.recipe_name }'
 
@@ -48,9 +52,8 @@ class Comment(models.Model):
     """ The model consists of comments made by user in Recipes """
     description     = models.CharField(max_length = 255, null = False, blank = False)
     recipe          = models.ForeignKey(Recipe, on_delete = models.CASCADE)
-    user            = models.ForeignKey(UserInfo, on_delete= models.CASCADE)
+    created_by      = models.ForeignKey(CustomUser, on_delete= models.CASCADE)
     is_appropriate  = models.BooleanField(default= True)
-
     def __str__(self):
         return f'Id: {self.is_appropriate}'
 
@@ -60,7 +63,7 @@ class Report(models.Model):
     title           = models.CharField(max_length= 30, blank= False, null= False)
     description     = models.CharField(max_length = 255, null = False, blank = False)
     recipe          = models.ForeignKey('Recipe', on_delete = models.CASCADE)
-    user            = models.ForeignKey('UserInfo', on_delete= models.CASCADE)
+    created_by      = models.ForeignKey('UserInfo', on_delete= models.CASCADE)
     is_repeated     = models.BooleanField(default= False)
 
     def __str__(self):
@@ -77,7 +80,7 @@ class Ingredient(models.Model):
 
 class Recipe_Ingredient(models.Model):
     recipe      = models.ForeignKey('Recipe',
-                    blank= False, null= False,
+                    blank= True, null= False,
                     on_delete = models.CASCADE)
     ingredient  = models.ForeignKey('Ingredient',
                     blank = False, null= False,

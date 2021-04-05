@@ -1,0 +1,29 @@
+{% extends 'app_recipe/base.html' %}
+{% load static %}
+{% block content %}
+
+    {% if recipeInfo %}
+        {{recipeInfo.id}} <br>
+        {{ recipeInfo.recipe_name }} <br>
+        {{ recipeInfo.description }}<br>
+        {{ recipeInfo.quantity }}<br>
+        {{ recipeInfo.recipe_type }}<br>
+        <!-- For loading ingredients and quantity -->
+        {% for ri in ingredients %}<br>
+        {{ ri.id }} : {{ ri.amount }} <br>
+        
+        <form class="box" action="" method="post">
+            {% csrf_token %}
+            {{ form.description }}<br>
+            <input class="login" type="submit" name="" value="Comment">
+        </form>
+        {% endfor %}
+    {% endif %}
+    {% if message %}
+        <div> {{ message }}</div>
+    {% endif %}
+    
+
+    <!-- Comment section -->
+
+{% endblock %}

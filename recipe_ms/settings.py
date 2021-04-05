@@ -126,4 +126,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # import mimetypes
 # mimetypes.add_type("text/css", ".css", True)
-LOGIN_REDIRECT_URL = 'app_recipe:index_page'
+LOGIN_REDIRECT_URL  = 'app_recipe:index_page'
+LOGIN_URL           = 'app_recipe:login_view'
