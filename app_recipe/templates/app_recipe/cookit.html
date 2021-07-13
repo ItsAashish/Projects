@@ -55,15 +55,17 @@
 			<h1><span>Popular recipes collection</span> </h1>
 		</div>
 		<div class="row">
+			{% for recipe in recipes %}
 			<div class="col-sm">
-				<img class="pho" src="images/chicken curry.jpg">
+				<img class="pho" src="{{ recipe.image_file.url }}">
 				<div class="col-sm">
 					<div class="colm">
-						<span>Chicken Pasta Recipe</span>
+						<span>{{ recipe.id }}</span>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm">
+			{% endfor %}
+			<!-- <div class="col-sm">
 				<img class="pho" src="images/chowmine.jpg">
 
 				<div class="col-sm">
@@ -88,7 +90,7 @@
 						<span>Rocket Egg Pizza Recipe</span>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 		<div class="container">
@@ -110,6 +112,7 @@
 			</div>
 			<div class="addbox">
 				<div class="format"></div>
+				<img src="{% static 'app_recipe/add1.JPG' %}" alt="" srcset="">
 			</div>
 		</div>
 	</div>

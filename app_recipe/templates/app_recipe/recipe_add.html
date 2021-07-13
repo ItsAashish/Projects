@@ -2,9 +2,63 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-<form class = 'box' action="" method="post">
+<div class="background1">
+    <form action="" method="post">
+        {% csrf_token %}
+            <div class="background-col1">
+                <div class="container">
+                    <div class="mainbox">
+                        <h2> Enter your Recipe Details: </h2>
+                        {{ RForm.as_p }}
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="background1">
+                <div class="container">
+                    <h2>Ingredients:</h2>
+                    <div class="mainbox1">
+                        {{ formset.management_form }}
+                        {% for form in formset %}
+                         {{ form.as_p }}
+                        {% endfor %}
+                    </div>
+                    <div class="button3">
+                        <button type="submit" class="btn">Save</button>
+                    </div>
+                </div>
+
+            </div>
+
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <form class = 'box' action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ RForm|crispy }}<br><br>
+    <div class="main">
+    {{ RForm.as_p }}<br><br>
     {{ formset.management_form }}
     <div> <h2>Enter the Ingredients </h2></div>
     <br>
@@ -12,7 +66,5 @@
         {{ form.as_p }}
     {% endfor %}
     <input type="submit" value="save">
-    
-
-</form>
-{% endblock %}
+    </div>
+</form> -->

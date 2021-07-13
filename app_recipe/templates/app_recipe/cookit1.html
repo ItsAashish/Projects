@@ -1,0 +1,119 @@
+{% extends 'app_recipe/base.html' %}
+{% load static %}
+{% block content %}
+<div class="background-col">
+    <div class="container">
+        <div class="topnav">
+            <ul>
+                <span>
+                    <li><a href="{% url 'app_recipe:all_recipes' %}">Recipes </a></li>
+                </span>
+                <span>
+                    <li> <a href="{% url 'app_recipe:add_recipe' %}">Add Recipes</a></li>
+                </span>
+                <span>
+                    <li> <a href="{% url 'app_recipe:reviews' %}">Reviews </a></li>
+                </span>
+                <span>
+                    <li><a href="#">Contact</a></li>
+                </span>
+            </ul>
+            <div class="line"></div>
+        </div>
+    </div>
+</div>
+<div class="showcase">
+    </br>
+    <h2>
+        <span> Welcome to the best website</span></br> <span> to discuss about food </span></br> <span> and
+            stuff. </spam></br> </span>
+        <span>We are here at your service.</span>
+    </h2>
+    </br>{% if not request.user.is_authenticated %}
+    <a href="{% url 'app_recipe:login_view' %}">
+        <div class="join">
+            <span class="visible">
+                <span class="inner">
+                    Join Now
+                </span>
+            </span>
+        </div>
+    </a>
+    {% endif %}
+</div>
+<div class="background">
+    <div class="container">
+        <div class="olive">
+            <section id="about-info">
+                <div class="info-left">
+                    <img src="{% static 'app_recipe/images/olive-oil.jpg' %}" alt="Cookit">
+                </div>
+                <div class="info-right">
+                    <h3>Make recipes your own</h3>
+                    <span>With Cookit's recipe editor, you can easily edit recipes, save adjustments to ingredients,
+                        and
+                        add additional steps or tips to your preparation.</span>
+                    <h3>All in one place</h3>
+                    <span>
+                        Storing your recipes in Cookit allows you to quickly search, find, and select what you want
+                        to
+                        cook.
+                    </span>
+                    <h3>Cook from your favorite device</h3>
+                    <span>Cookit stores your recipes in the Cloud so you can access them on any device through our
+                        website
+                        or
+                        Android/iOS app.<span>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<div class="background1">
+    <div class="container">
+        <div class="popular">
+            <h3>Popular recipes collection </h3>
+        </div>
+        <div class="row">
+            {% for recipe in recipes %}
+			<div class="col-sm">
+				<img class="pho" src="{{ recipe.image_file.url }}">
+				<div class="col-sm">
+					<div class="colm">
+						<span>{{ recipe.id }}</span>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+        </div>
+    </div>
+    <div class="container">
+        <div class="wrapper">
+            <a href="{% url 'app_recipe:all_recipes' %}">
+                <span class="inner">
+            <span class="visible">
+                    More recipe collections
+                </span>
+            </span>
+        </a>
+        </div>
+    </div>
+    <div class="add-import">
+        <div class="container">
+            <div class="wrapper2">
+                <span class="inner">
+                    <h3>Add Recipe</h3><span>Import from websites or enter using our side by side recipe form</span>
+                </span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="addbox">
+                <div class="info-left1">
+                    <img src="{% static 'app_recipe/images/add1.jpg' %}" alt="add">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

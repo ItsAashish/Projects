@@ -1,0 +1,16 @@
+{% extends 'app_recipe/base.html' %}
+{% load static %}
+{% block content %}
+<div class="card">
+    <img src="{{ extra.profile.url }}" alt="{{ extra.firstName }}" style="width:100%">
+    <h1>{{ extra.firstName }} {{ extra.lastName }}</h1>
+    <p class="title"> {{ user.email }}</p>
+    <a  id = 'carda' href="#"><i class="fa fa-dribbble"></i></a>
+    <a id = 'carda' href="#"><i class="fa fa-twitter"></i></a>
+    <a id = 'carda' href="#"><i class="fa fa-linkedin"></i></a>
+    <a id = 'carda' href="#"><i class="fa fa-facebook"></i></a>
+    <p><button id="cardbutton">Contact</button></p>
+</div>
+
+
+{% endblock %}

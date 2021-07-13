@@ -13,14 +13,14 @@
 			<div class="background1">
 				<div class="container">
 					<div class="main">
-						<form class="box" method="POST"  >
+						<form class="box" method="POST" enctype="multipart/form-data" >
 							{% csrf_token %}
 							<h1>Register</h1>
 							<p class="text-muted"> Please enter details for signup!</p>
 							{{ form1|crispy }}
 							{{ form2|crispy }}
 							<input class="login" type="submit" name="" value="Register" href="#">
-							<input class="login" type="submit" name="" value="Already have account?" href="#" >
+							<a href="{% url 'app_recipe:login_view' %}"><input class="login" name="" value="Already have account?"  ></a>
 						</form>
 					</div>
 				</div>

@@ -1,0 +1,35 @@
+
+{% extends 'app_recipe/base.html' %}
+{% load static %}
+{% block content %}
+<div class="background1">
+    <div class="container">
+        <div class="popular">
+            <h3>Popular recipes collection </h3>
+        </div>
+        <div class="row">
+            {% for recipe in recipes %}
+			<div class="col-sm">
+				<img class="pho" src="{{ recipe.image_file.url }}">
+				<div class="col-sm">
+					<div class="colm">
+						<a href="{% url 'app_recipe:view_recipe' id=recipe.id  %}"><span>{{ recipe.recipe_name }}</span></a>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+        </div>
+    </div>
+    <div class="container">
+        <div class="wrapper">
+            <span class="visible">
+                <span class="inner">
+                    More recipe collections
+                </span>
+            </span>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}

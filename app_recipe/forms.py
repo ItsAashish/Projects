@@ -19,7 +19,7 @@ class UserForm(forms.ModelForm):
 class RecipeForm(forms.ModelForm):
     class Meta:
         model   = Recipe
-        fields  = ('recipe_name', 'description', 'quantity', 'recipe_type')
+        fields  = ('recipe_name', 'description', 'quantity', 'recipe_type', 'image_file')
 
 class RIForm(forms.ModelForm):
     class Meta:
@@ -29,4 +29,9 @@ class RIForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model   = Comment
-        fields  = ('description',)
+        exclude = ('recipe', 'created_by', 'is_appropriate',)
+
+class ReportForm(forms.ModelForm):
+    class Meta:
+        model   = Report
+        exclude = ('recipe', 'created_by','is_repeated')

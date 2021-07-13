@@ -1,6 +1,7 @@
 # import cuser
 from cuser.models import CustomUser
 from django.db import models
+from django.shortcuts import reverse
 # Create your models here.
 
 class UserInfo(models.Model):
@@ -11,10 +12,14 @@ class UserInfo(models.Model):
                 null = True,
                 blank = True,
                 )
+
     firstName   = models.CharField(max_length = 30, null= True, blank= True)
     lastName    = models.CharField(max_length = 30, null= True, blank= True)
     address     = models.CharField(max_length = 30, null= True, blank = True)
 
+    profile     = models.ImageField(upload_to = 'profile/',
+                    blank = True, null = True,
+                    default = 'profile_default.png')
     def __str__(self):
         return f'{ self.firstName } {self.lastName}'
 
@@ -33,7 +38,7 @@ class Recipe(models.Model):
     description     = models.TextField(blank= False, null= False)
     quantity        = models.CharField(max_length= 30, null=True, blank= True)
     date_added      = models.DateTimeField(auto_now_add= True, blank= False)
-    recipe_type     = models.ForeignKey('Category',
+    recipe_type     = models.ForeignKey(Category,
                             blank= True, null= True,
                             on_delete = models.CASCADE
                             )
@@ -41,6 +46,7 @@ class Recipe(models.Model):
                     CustomUser,
                     on_delete=models.CASCADE
         )
+    image_file      = models.ImageField(null = True, blank = True,default = 'image_default.png')
     def __str__(self):
         return f'{ self.recipe_name }'
 
@@ -51,19 +57,19 @@ class Recipe(models.Model):
 class Comment(models.Model):
     """ The model consists of comments made by user in Recipes """
     description     = models.CharField(max_length = 255, null = False, blank = False)
-    recipe          = models.ForeignKey(Recipe, on_delete = models.CASCADE)
-    created_by      = models.ForeignKey(CustomUser, on_delete= models.CASCADE)
+    recipe          = models.ForeignKey(Recipe, on_delete = models.CASCADE, null= True, blank= True)
+    created_by      = models.ForeignKey(CustomUser, on_delete= models.CASCADE, null= True, blank= True)
     is_appropriate  = models.BooleanField(default= True)
     def __str__(self):
-        return f'Id: {self.is_appropriate}'
+        return f'Id: {self.description}'
 
 
 class Report(models.Model):
     """ The model consists of Reports to the Recipes """
     title           = models.CharField(max_length= 30, blank= False, null= False)
     description     = models.CharField(max_length = 255, null = False, blank = False)
-    recipe          = models.ForeignKey('Recipe', on_delete = models.CASCADE)
-    created_by      = models.ForeignKey('UserInfo', on_delete= models.CASCADE)
+    recipe          = models.ForeignKey(Recipe, on_delete = models.CASCADE, null= True, blank= True)
+    created_by      = models.ForeignKey(CustomUser, on_delete= models.CASCADE, null= True, blank= True)
     is_repeated     = models.BooleanField(default= False)
 
     def __str__(self):
@@ -79,14 +85,14 @@ class Ingredient(models.Model):
         return f'{ self.ingredient_name }'
 
 class Recipe_Ingredient(models.Model):
-    recipe      = models.ForeignKey('Recipe',
+    recipe      = models.ForeignKey(Recipe,
                     blank= True, null= False,
                     on_delete = models.CASCADE)
-    ingredient  = models.ForeignKey('Ingredient',
+    ingredient  = models.ForeignKey(Ingredient,
                     blank = False, null= False,
                     on_delete = models.CASCADE)
     amount      = models.FloatField(null=False, blank= False)
 
     def __str__(self):
-        return f'{self.recipe} {self.ingredient}'
+        return f'{self.ingredient}'
 
