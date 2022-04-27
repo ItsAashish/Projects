@@ -9,7 +9,7 @@
 asgiref==3.4.1; python_version >= '3.6'
 django-crispy-forms==1.11.2
 django==3.2.13
-pillow==8.3.2
+pillow==9.0.1
 psycopg2==2.8.6
 pytz==2021.1
 sqlparse==0.4.2
